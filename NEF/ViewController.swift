@@ -23,7 +23,7 @@ class ViewController: UIViewController {
 		self.view.addSubview(topContainerView)
 		topContainerView.snp_makeConstraints { (make) -> Void in
 			make.width.equalTo(view)
-			make.height.equalTo(view).multipliedBy(0.35)
+			make.height.equalTo(view).multipliedBy(0.40)
 			make.top.equalTo(view)
 		}
 		
@@ -34,8 +34,8 @@ class ViewController: UIViewController {
 		btnTopLeft.snp_makeConstraints { (make) -> Void in
 			make.left.equalTo(view)
 			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.height.equalTo(100)
-			make.top.equalTo(topContainerView.snp_bottom)
+			make.height.equalTo(150)
+			make.top.equalTo(topContainerView.snp_bottom).offset(1)
 		}
 		
 		let btnTopRight = Button()
@@ -43,11 +43,10 @@ class ViewController: UIViewController {
 		btnTopRight.setTitleColor(UIColor.redColor(), forState: .Normal)
 		self.view.addSubview(btnTopRight)
 		btnTopRight.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(btnTopLeft.snp_right)
-			make.right.equalTo(view)
+			make.left.equalTo(btnTopLeft.snp_right).offset(1)
 			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.height.equalTo(100)
-			make.top.equalTo(topContainerView.snp_bottom)
+			make.height.equalTo(150)
+			make.top.equalTo(topContainerView.snp_bottom).offset(1)
 		}
 		
 		let btnMiddleLeft = Button()
@@ -56,9 +55,9 @@ class ViewController: UIViewController {
 		self.view.addSubview(btnMiddleLeft)
 		btnMiddleLeft.snp_makeConstraints { (make) -> Void in
 			make.left.equalTo(view)
-			make.height.equalTo(100)
+			make.height.equalTo(btnTopLeft.snp_height).multipliedBy(0.60)
 			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.top.equalTo(btnTopLeft.snp_bottom)
+			make.top.equalTo(btnTopLeft.snp_bottom).offset(1)
 		}
 		
 		let btnMiddleRight = Button()
@@ -66,11 +65,10 @@ class ViewController: UIViewController {
 		btnMiddleRight.setTitleColor(UIColor.redColor(), forState: .Normal)
 		self.view.addSubview(btnMiddleRight)
 		btnMiddleRight.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(btnMiddleLeft.snp_right)
-			make.right.equalTo(view)
-			make.height.equalTo(100)
+			make.left.equalTo(btnMiddleLeft.snp_right).offset(1)
+			make.height.equalTo(btnTopLeft.snp_height).multipliedBy(0.60)
 			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.top.equalTo(btnTopRight.snp_bottom)
+			make.top.equalTo(btnTopRight.snp_bottom).offset(1)
 		}
 		
 		let btnLowerLeft = Button()
@@ -80,8 +78,8 @@ class ViewController: UIViewController {
 		btnLowerLeft.snp_makeConstraints { (make) -> Void in
 			make.left.equalTo(view)
 			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.height.equalTo(100)
-			make.top.equalTo(btnMiddleLeft.snp_bottom)
+			make.height.equalTo(btnTopLeft.snp_height).multipliedBy(0.45)
+			make.top.equalTo(btnMiddleLeft.snp_bottom).offset(1)
 		}
 		
 		let btnLowerRight = Button()
@@ -89,12 +87,34 @@ class ViewController: UIViewController {
 		btnLowerRight.setTitleColor(UIColor.redColor(), forState: .Normal)
 		self.view.addSubview(btnLowerRight)
 		btnLowerRight.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(btnLowerLeft.snp_right)
+			make.left.equalTo(btnLowerLeft.snp_right).offset(1)
 			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.right.equalTo(view)
-			make.height.equalTo(100)
-			make.top.equalTo(btnMiddleRight.snp_bottom)
+			make.height.equalTo(btnTopLeft.snp_height).multipliedBy(0.45)
+			make.top.equalTo(btnMiddleRight.snp_bottom).offset(1)
 		}
+		
+		let btnBottomLeft = Button()
+		btnBottomLeft.setTitle("Bottom Left", forState: .Normal)
+		btnBottomLeft.setTitleColor(UIColor.redColor(), forState: .Normal)
+		self.view.addSubview(btnBottomLeft)
+		btnBottomLeft.snp_makeConstraints { (make) -> Void in
+			make.left.equalTo(view)
+			make.width.equalTo(view.snp_width).multipliedBy(0.50)
+			make.height.equalTo(btnTopLeft.snp_height).multipliedBy(0.30)
+			make.top.equalTo(btnLowerLeft.snp_bottom).offset(1)
+		}
+		
+		let btnBottomRight = Button()
+		btnBottomRight.setTitle("Bottom Right", forState: .Normal)
+		btnBottomRight.setTitleColor(UIColor.redColor(), forState: .Normal)
+		self.view.addSubview(btnBottomRight)
+		btnBottomRight.snp_makeConstraints { (make) -> Void in
+			make.left.equalTo(btnBottomLeft.snp_right).offset(1)
+			make.width.equalTo(view.snp_width).multipliedBy(0.50)
+			make.height.equalTo(btnTopLeft.snp_height).multipliedBy(0.30)
+			make.top.equalTo(btnLowerRight.snp_bottom).offset(1)
+		}
+
 		
 	}
 	override func didReceiveMemoryWarning() {

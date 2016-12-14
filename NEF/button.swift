@@ -20,12 +20,13 @@ class Button: UIButton {
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
+		self.layer.borderWidth = 1
+		self.layer.borderColor = UIColor.lightGrayColor().CGColor
 		topBarView.backgroundColor = UIColor(hex: 0xF0AF3C)
 		self.addSubview(topBarView)
 		topBarView.snp_makeConstraints { (make) -> Void in
-			make.width.equalTo(self)
+			make.left.right.top.equalTo(self)
 			make.height.equalTo(self).multipliedBy(0.10)
-			make.top.equalTo(self)
 		}
 	}
 	
