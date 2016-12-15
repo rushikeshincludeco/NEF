@@ -9,124 +9,177 @@
 import UIKit
 import SnapKit
 
+class ViewController: UIViewController, tapDelegate {
+	//MARK:- Structs
+	struct ScreenSize {
+		static let SCREEN_WIDTH = UIScreen.mainScreen().bounds.size.width
+		static let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.size.height
+		static let SCREEN_MAX_LENGTH = max(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+		static let SCREEN_MIN_LENGTH = min(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+	}
+	
+	struct DeviceType {
+		static let IS_IPHONE_4_OR_LESS =  UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH < 568.0
+		static let IS_IPHONE_5 = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 568.0
+		static let IS_IPHONE_6 = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 667.0
+		static let IS_IPHONE_6P = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
+	}
 
-class ViewController: UIViewController {
-
+	// MARK:- View
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
 		self.navigationController?.navigationBar.topItem?.title = "NEF"
 		
-		let topContainerView = UIView()
-		topContainerView.backgroundColor = UIColor.blackColor()
-		self.view.addSubview(topContainerView)
+		let container = Container()
+		container.delegate = self
+		self.view.addSubview(container)
+		container.snp_makeConstraints { (make) in
+			make.top.left.right.bottom.equalTo(view)
+		}
+		
+		let topContainerView = UIImageView()
+		topContainerView.image = UIImage(named: "3.png")
+		topContainerView.tag = 1
+		topContainerView.userInteractionEnabled = true
+		container.addSubview(topContainerView)
 		topContainerView.snp_makeConstraints { (make) -> Void in
 			make.width.equalTo(view)
 			make.height.equalTo(view).multipliedBy(0.40)
 			make.top.equalTo(view)
 		}
 		
-		let btnTopLeft = Button()
-		btnTopLeft.setTitle("Top Left", forState: .Normal)
-		btnTopLeft.setTitleColor(UIColor.redColor(), forState: .Normal)
-		self.view.addSubview(btnTopLeft)
-		btnTopLeft.snp_makeConstraints { (make) -> Void in
+		let topLeftView = UIImageView()
+		topLeftView.image = UIImage(named: "2.png")
+		topLeftView.tag = 2
+		topLeftView.userInteractionEnabled = true
+		topLeftView.layer.borderWidth = 1
+		container.addSubview(topLeftView)
+		topLeftView.snp_makeConstraints { (make) -> Void in
 			make.left.equalTo(view)
 			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.height.equalTo(150)
+			make.height.equalTo(DeviceType.IS_IPHONE_4_OR_LESS || DeviceType.IS_IPHONE_5 ? 130: 150)
 			make.top.equalTo(topContainerView.snp_bottom).offset(1)
 		}
 		
-		let btnTopRight = Button()
-		btnTopRight.setTitle("Top Right", forState: .Normal)
-		btnTopRight.setTitleColor(UIColor.redColor(), forState: .Normal)
-		self.view.addSubview(btnTopRight)
-		btnTopRight.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(btnTopLeft.snp_right).offset(1)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.height.equalTo(150)
-			make.top.equalTo(topContainerView.snp_bottom).offset(1)
-		}
-		
-		let btnMiddleLeft = Button()
-		btnMiddleLeft.setTitle("Middle Left", forState: .Normal)
-		btnMiddleLeft.setTitleColor(UIColor.redColor(), forState: .Normal)
-		self.view.addSubview(btnMiddleLeft)
-		btnMiddleLeft.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(view)
-			make.height.equalTo(btnTopLeft.snp_height).multipliedBy(0.60)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.top.equalTo(btnTopLeft.snp_bottom).offset(1)
-		}
-		
-		let btnMiddleRight = Button()
-		btnMiddleRight.setTitle("Middle Right", forState: .Normal)
-		btnMiddleRight.setTitleColor(UIColor.redColor(), forState: .Normal)
-		self.view.addSubview(btnMiddleRight)
-		btnMiddleRight.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(btnMiddleLeft.snp_right).offset(1)
-			make.height.equalTo(btnTopLeft.snp_height).multipliedBy(0.60)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.top.equalTo(btnTopRight.snp_bottom).offset(1)
-		}
-		
-		let btnLowerLeft = Button()
-		btnLowerLeft.setTitle("Lower Left", forState: .Normal)
-		btnLowerLeft.setTitleColor(UIColor.redColor(), forState: .Normal)
-		self.view.addSubview(btnLowerLeft)
-		btnLowerLeft.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(view)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.height.equalTo(btnTopLeft.snp_height).multipliedBy(0.45)
-			make.top.equalTo(btnMiddleLeft.snp_bottom).offset(1)
-		}
-		
-		let btnLowerRight = Button()
-		btnLowerRight.setTitle("Lower Right", forState: .Normal)
-		btnLowerRight.setTitleColor(UIColor.redColor(), forState: .Normal)
-		self.view.addSubview(btnLowerRight)
-		btnLowerRight.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(btnLowerLeft.snp_right).offset(1)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.height.equalTo(btnTopLeft.snp_height).multipliedBy(0.45)
-			make.top.equalTo(btnMiddleRight.snp_bottom).offset(1)
-		}
-		
-		let btnBottomLeft = Button()
-		btnBottomLeft.setTitle("Bottom Left", forState: .Normal)
-		btnBottomLeft.setTitleColor(UIColor.redColor(), forState: .Normal)
-		self.view.addSubview(btnBottomLeft)
-		btnBottomLeft.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(view)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.height.equalTo(btnTopLeft.snp_height).multipliedBy(0.30)
-			make.top.equalTo(btnLowerLeft.snp_bottom).offset(1)
-		}
-		
-		let btnBottomRight = Button()
-		btnBottomRight.setTitle("Bottom Right", forState: .Normal)
-		btnBottomRight.setTitleColor(UIColor.redColor(), forState: .Normal)
-		self.view.addSubview(btnBottomRight)
-		btnBottomRight.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(btnBottomLeft.snp_right).offset(1)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.height.equalTo(btnTopLeft.snp_height).multipliedBy(0.30)
-			make.top.equalTo(btnLowerRight.snp_bottom).offset(1)
-		}
+		let topRightView = UIImageView()
+		topRightView.image = UIImage(named: "2.png")
+		topRightView.tag = 3
+		topRightView.userInteractionEnabled = true
+		topRightView.layer.borderWidth = 1
+		container.addSubview(topRightView)
 
+		topRightView.snp_makeConstraints { (make) -> Void in
+			make.left.equalTo(topLeftView.snp_right).offset(1)
+			make.width.equalTo(view.snp_width).multipliedBy(0.50)
+			make.height.equalTo(DeviceType.IS_IPHONE_4_OR_LESS || DeviceType.IS_IPHONE_5 ? 130: 150)
+			make.top.equalTo(topContainerView.snp_bottom).offset(1)
+		}
 		
+		let middleLeftView = UIImageView()
+		middleLeftView.tag = 4
+		middleLeftView.image = UIImage(named: "2.png")
+		middleLeftView.userInteractionEnabled = true
+		middleLeftView.layer.borderWidth = 1
+		container.addSubview(middleLeftView)
+
+		middleLeftView.snp_makeConstraints { (make) -> Void in
+			make.left.equalTo(view)
+			make.height.equalTo(topLeftView.snp_height).multipliedBy(0.60)
+			make.width.equalTo(view.snp_width).multipliedBy(0.50)
+			make.top.equalTo(topLeftView.snp_bottom).offset(1)
+		}
+		
+		let middleRightView = UIImageView()
+		middleRightView.image = UIImage(named: "2.png")
+		middleRightView.tag = 5
+		middleRightView.userInteractionEnabled = true
+		middleRightView.layer.borderWidth = 1
+		container.addSubview(middleRightView)
+
+		middleRightView.snp_makeConstraints { (make) -> Void in
+			make.left.equalTo(middleLeftView.snp_right).offset(1)
+			make.height.equalTo(topLeftView.snp_height).multipliedBy(0.60)
+			make.width.equalTo(view.snp_width).multipliedBy(0.50)
+			make.top.equalTo(topRightView.snp_bottom).offset(1)
+		}
+		
+		let lowerLeftView = UIImageView()
+		lowerLeftView.image = UIImage(named: "2.png")
+		lowerLeftView.tag = 6
+		lowerLeftView.userInteractionEnabled = true
+		lowerLeftView.layer.borderWidth = 1
+		container.addSubview(lowerLeftView)
+
+		lowerLeftView.snp_makeConstraints { (make) -> Void in
+			make.left.equalTo(view)
+			make.width.equalTo(view.snp_width).multipliedBy(0.50)
+			make.height.equalTo(topLeftView.snp_height).multipliedBy(0.45)
+			make.top.equalTo(middleLeftView.snp_bottom).offset(1)
+		}
+		
+		let lowerRightView = UIImageView()
+		lowerRightView.image = UIImage(named: "2.png")
+		lowerRightView.tag = 7
+		lowerRightView.userInteractionEnabled = true
+		lowerRightView.layer.borderWidth = 1
+		container.addSubview(lowerRightView)
+
+		lowerRightView.snp_makeConstraints { (make) -> Void in
+			make.left.equalTo(lowerLeftView.snp_right).offset(1)
+			make.width.equalTo(view.snp_width).multipliedBy(0.50)
+			make.height.equalTo(topLeftView.snp_height).multipliedBy(0.45)
+			make.top.equalTo(middleRightView.snp_bottom).offset(1)
+		}
+		
+		let bottomLeftView = UIImageView()
+		bottomLeftView.image = UIImage(named: "2.png")
+		bottomLeftView.tag = 8
+		bottomLeftView.userInteractionEnabled = true
+		bottomLeftView.layer.borderWidth = 1
+		container.addSubview(bottomLeftView)
+
+		bottomLeftView.snp_makeConstraints { (make) -> Void in
+			make.left.equalTo(view)
+			make.width.equalTo(view.snp_width).multipliedBy(0.50)
+			make.height.equalTo(topLeftView.snp_height).multipliedBy(0.30)
+			make.top.equalTo(lowerLeftView.snp_bottom).offset(1)
+		}
+		
+		let bottomRightView = UIImageView()
+		bottomRightView.image = UIImage(named: "2.png")
+		bottomRightView.tag = 9
+		bottomRightView.userInteractionEnabled = true
+		bottomRightView.layer.borderWidth = 1
+		container.addSubview(bottomRightView)
+
+		bottomRightView.snp_makeConstraints { (make) -> Void in
+			make.left.equalTo(bottomLeftView.snp_right).offset(1)
+			make.width.equalTo(view.snp_width).multipliedBy(0.50)
+			make.height.equalTo(topLeftView.snp_height).multipliedBy(0.30)
+			make.top.equalTo(lowerRightView.snp_bottom).offset(1)
+		}
 	}
+	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
 
-
+	// MARK:- Container Delegate Method
+	func setDelegate(tag: Int) {
+		print(tag)
+		let alertController = UIAlertController(title: "Hello", message: "You lastly touched on \(tag)", preferredStyle: .Alert)
+		
+		let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+		alertController.addAction(defaultAction)
+		
+		presentViewController(alertController, animated: true, completion: nil)
+	}
 }
-
+// MARK:- UIColor extension
 extension UIColor {
-	
 	convenience init(hex: Int) {
 		let red = CGFloat((hex & 0xFF0000) >> 16) / 255.0
 		let green = CGFloat((hex & 0xFF00) >> 8) / 255.0
