@@ -26,7 +26,6 @@ class Container : UIView {
 			sender.transform = CGAffineTransformMakeScale(1.1, 1.1)
 			self.bringSubviewToFront(sender)
 			sender.layer.masksToBounds = false
-			sender.layer.borderWidth = 1.0
 			completion(true)
 		})
 	}
@@ -36,7 +35,6 @@ class Container : UIView {
 			
 			sender.transform = CGAffineTransformMakeScale(1, 1)
 			sender.layer.masksToBounds = false
-			sender.layer.borderWidth = 1.0
 			completion(true)
 		})
 	}	

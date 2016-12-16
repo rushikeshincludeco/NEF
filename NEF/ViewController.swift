@@ -41,20 +41,20 @@ class ViewController: UIViewController, tapDelegate {
 		
 		let topContainerView = UIImageView()
 		topContainerView.image = UIImage(named: "3.png")
+		topContainerView.contentMode = .ScaleAspectFill
 		topContainerView.tag = 1
 		topContainerView.userInteractionEnabled = true
 		container.addSubview(topContainerView)
 		topContainerView.snp_makeConstraints { (make) -> Void in
 			make.width.equalTo(view)
 			make.height.equalTo(view).multipliedBy(0.40)
-			make.top.equalTo(view)
+			make.top.equalTo(view).offset(20)
 		}
 		
-		let topLeftView = UIImageView()
-		topLeftView.image = UIImage(named: "2.png")
+		let topLeftView = VC()
+		topLeftView.imgView.image = UIImage(named: "4.jpg")
 		topLeftView.tag = 2
 		topLeftView.userInteractionEnabled = true
-		topLeftView.layer.borderWidth = 1
 		container.addSubview(topLeftView)
 		topLeftView.snp_makeConstraints { (make) -> Void in
 			make.left.equalTo(view)
@@ -63,11 +63,10 @@ class ViewController: UIViewController, tapDelegate {
 			make.top.equalTo(topContainerView.snp_bottom).offset(1)
 		}
 		
-		let topRightView = UIImageView()
-		topRightView.image = UIImage(named: "2.png")
+		let topRightView = VC()
+		topRightView.imgView.image = UIImage(named: "5.jpg")
 		topRightView.tag = 3
 		topRightView.userInteractionEnabled = true
-		topRightView.layer.borderWidth = 1
 		container.addSubview(topRightView)
 
 		topRightView.snp_makeConstraints { (make) -> Void in
@@ -77,11 +76,10 @@ class ViewController: UIViewController, tapDelegate {
 			make.top.equalTo(topContainerView.snp_bottom).offset(1)
 		}
 		
-		let middleLeftView = UIImageView()
+		let middleLeftView = VC()
 		middleLeftView.tag = 4
-		middleLeftView.image = UIImage(named: "2.png")
+		middleLeftView.imgView.image = UIImage(named: "6.jpg")
 		middleLeftView.userInteractionEnabled = true
-		middleLeftView.layer.borderWidth = 1
 		container.addSubview(middleLeftView)
 
 		middleLeftView.snp_makeConstraints { (make) -> Void in
@@ -91,11 +89,10 @@ class ViewController: UIViewController, tapDelegate {
 			make.top.equalTo(topLeftView.snp_bottom).offset(1)
 		}
 		
-		let middleRightView = UIImageView()
-		middleRightView.image = UIImage(named: "2.png")
+		let middleRightView = VC()
+		middleRightView.imgView.image = UIImage(named: "7.jpg")
 		middleRightView.tag = 5
 		middleRightView.userInteractionEnabled = true
-		middleRightView.layer.borderWidth = 1
 		container.addSubview(middleRightView)
 
 		middleRightView.snp_makeConstraints { (make) -> Void in
@@ -105,11 +102,10 @@ class ViewController: UIViewController, tapDelegate {
 			make.top.equalTo(topRightView.snp_bottom).offset(1)
 		}
 		
-		let lowerLeftView = UIImageView()
-		lowerLeftView.image = UIImage(named: "2.png")
+		let lowerLeftView = VC()
+		lowerLeftView.imgView.image = UIImage(named: "8.jpg")
 		lowerLeftView.tag = 6
 		lowerLeftView.userInteractionEnabled = true
-		lowerLeftView.layer.borderWidth = 1
 		container.addSubview(lowerLeftView)
 
 		lowerLeftView.snp_makeConstraints { (make) -> Void in
@@ -119,11 +115,10 @@ class ViewController: UIViewController, tapDelegate {
 			make.top.equalTo(middleLeftView.snp_bottom).offset(1)
 		}
 		
-		let lowerRightView = UIImageView()
-		lowerRightView.image = UIImage(named: "2.png")
+		let lowerRightView = VC()
+		lowerRightView.imgView.image = UIImage(named: "9.bmp")
 		lowerRightView.tag = 7
 		lowerRightView.userInteractionEnabled = true
-		lowerRightView.layer.borderWidth = 1
 		container.addSubview(lowerRightView)
 
 		lowerRightView.snp_makeConstraints { (make) -> Void in
@@ -133,11 +128,10 @@ class ViewController: UIViewController, tapDelegate {
 			make.top.equalTo(middleRightView.snp_bottom).offset(1)
 		}
 		
-		let bottomLeftView = UIImageView()
-		bottomLeftView.image = UIImage(named: "2.png")
+		let bottomLeftView = VC()
+		bottomLeftView.imgView.image = UIImage(named: "10.jpg")
 		bottomLeftView.tag = 8
 		bottomLeftView.userInteractionEnabled = true
-		bottomLeftView.layer.borderWidth = 1
 		container.addSubview(bottomLeftView)
 
 		bottomLeftView.snp_makeConstraints { (make) -> Void in
@@ -147,11 +141,10 @@ class ViewController: UIViewController, tapDelegate {
 			make.top.equalTo(lowerLeftView.snp_bottom).offset(1)
 		}
 		
-		let bottomRightView = UIImageView()
-		bottomRightView.image = UIImage(named: "2.png")
+		let bottomRightView = VC()
+		bottomRightView.imgView.image = UIImage(named: "11.jpg")
 		bottomRightView.tag = 9
 		bottomRightView.userInteractionEnabled = true
-		bottomRightView.layer.borderWidth = 1
 		container.addSubview(bottomRightView)
 
 		bottomRightView.snp_makeConstraints { (make) -> Void in
