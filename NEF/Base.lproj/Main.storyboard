@@ -18,11 +18,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="4dq-HL-HaC"/>
+                    <navigationItem key="navigationItem" id="4dq-HL-HaC">
+                        <nil key="title"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1090" y="387"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="8xI-Q7-Hqn">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="Zox-tA-Ydi" customClass="MapViewController" customModule="NEF" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WLK-tW-YA8"/>
+                        <viewControllerLayoutGuide type="bottom" id="soz-Oq-Dcw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mzT-fg-Q73">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wme-N5-1fD" customClass="MKMapView">
+                                <rect key="frame" x="20" y="28" width="560" height="552"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="wme-N5-1fD" id="Qa2-YO-Ygz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fUE-6O-cUs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1718" y="1222"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xw2-yh-cnz">

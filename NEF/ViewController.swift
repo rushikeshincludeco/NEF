@@ -10,6 +10,9 @@ import UIKit
 import SnapKit
 
 class ViewController: UIViewController, tapDelegate {
+	
+	
+	
 	//MARK:- Structs
 	struct ScreenSize {
 		static let SCREEN_WIDTH = UIScreen.mainScreen().bounds.size.width
@@ -31,6 +34,8 @@ class ViewController: UIViewController, tapDelegate {
 		// Do any additional setup after loading the view, typically from a nib.
 		
 		self.navigationController?.navigationBar.topItem?.title = "NEF"
+		self.navigationController?.navigationBar.translucent = true
+		self.navigationController?.navigationBar.clipsToBounds = true
 		
 		let container = Container()
 		container.delegate = self
@@ -43,7 +48,7 @@ class ViewController: UIViewController, tapDelegate {
 		topContainerView.image = UIImage(named: "3.png")
 		topContainerView.contentMode = .ScaleAspectFill
 		topContainerView.tag = 1
-		topContainerView.userInteractionEnabled = true
+//		topContainerView.userInteractionEnabled = true
 		container.addSubview(topContainerView)
 		topContainerView.snp_makeConstraints { (make) -> Void in
 			make.width.equalTo(view)
@@ -54,7 +59,7 @@ class ViewController: UIViewController, tapDelegate {
 		let topLeftView = VC()
 		topLeftView.imgView.image = UIImage(named: "4.jpg")
 		topLeftView.tag = 2
-		topLeftView.userInteractionEnabled = true
+//		topLeftView.userInteractionEnabled = true
 		container.addSubview(topLeftView)
 		topLeftView.snp_makeConstraints { (make) -> Void in
 			make.left.equalTo(view)
@@ -66,7 +71,7 @@ class ViewController: UIViewController, tapDelegate {
 		let topRightView = VC()
 		topRightView.imgView.image = UIImage(named: "5.jpg")
 		topRightView.tag = 3
-		topRightView.userInteractionEnabled = true
+//		topRightView.userInteractionEnabled = true
 		container.addSubview(topRightView)
 
 		topRightView.snp_makeConstraints { (make) -> Void in
@@ -79,12 +84,12 @@ class ViewController: UIViewController, tapDelegate {
 		let middleLeftView = VC()
 		middleLeftView.tag = 4
 		middleLeftView.imgView.image = UIImage(named: "6.jpg")
-		middleLeftView.userInteractionEnabled = true
+//		middleLeftView.userInteractionEnabled = true
 		container.addSubview(middleLeftView)
 
 		middleLeftView.snp_makeConstraints { (make) -> Void in
 			make.left.equalTo(view)
-			make.height.equalTo(topLeftView.snp_height).multipliedBy(0.60)
+			make.height.equalTo(topLeftView.snp_height)
 			make.width.equalTo(view.snp_width).multipliedBy(0.50)
 			make.top.equalTo(topLeftView.snp_bottom).offset(1)
 		}
@@ -92,67 +97,16 @@ class ViewController: UIViewController, tapDelegate {
 		let middleRightView = VC()
 		middleRightView.imgView.image = UIImage(named: "7.jpg")
 		middleRightView.tag = 5
-		middleRightView.userInteractionEnabled = true
+//		middleRightView.userInteractionEnabled = true
 		container.addSubview(middleRightView)
 
 		middleRightView.snp_makeConstraints { (make) -> Void in
 			make.left.equalTo(middleLeftView.snp_right).offset(1)
-			make.height.equalTo(topLeftView.snp_height).multipliedBy(0.60)
+			make.height.equalTo(topLeftView.snp_height)
 			make.width.equalTo(view.snp_width).multipliedBy(0.50)
 			make.top.equalTo(topRightView.snp_bottom).offset(1)
 		}
-		
-		let lowerLeftView = VC()
-		lowerLeftView.imgView.image = UIImage(named: "8.jpg")
-		lowerLeftView.tag = 6
-		lowerLeftView.userInteractionEnabled = true
-		container.addSubview(lowerLeftView)
 
-		lowerLeftView.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(view)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.height.equalTo(topLeftView.snp_height).multipliedBy(0.45)
-			make.top.equalTo(middleLeftView.snp_bottom).offset(1)
-		}
-		
-		let lowerRightView = VC()
-		lowerRightView.imgView.image = UIImage(named: "9.bmp")
-		lowerRightView.tag = 7
-		lowerRightView.userInteractionEnabled = true
-		container.addSubview(lowerRightView)
-
-		lowerRightView.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(lowerLeftView.snp_right).offset(1)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.height.equalTo(topLeftView.snp_height).multipliedBy(0.45)
-			make.top.equalTo(middleRightView.snp_bottom).offset(1)
-		}
-		
-		let bottomLeftView = VC()
-		bottomLeftView.imgView.image = UIImage(named: "10.jpg")
-		bottomLeftView.tag = 8
-		bottomLeftView.userInteractionEnabled = true
-		container.addSubview(bottomLeftView)
-
-		bottomLeftView.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(view)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.height.equalTo(topLeftView.snp_height).multipliedBy(0.30)
-			make.top.equalTo(lowerLeftView.snp_bottom).offset(1)
-		}
-		
-		let bottomRightView = VC()
-		bottomRightView.imgView.image = UIImage(named: "11.jpg")
-		bottomRightView.tag = 9
-		bottomRightView.userInteractionEnabled = true
-		container.addSubview(bottomRightView)
-
-		bottomRightView.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(bottomLeftView.snp_right).offset(1)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.height.equalTo(topLeftView.snp_height).multipliedBy(0.30)
-			make.top.equalTo(lowerRightView.snp_bottom).offset(1)
-		}
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -163,13 +117,12 @@ class ViewController: UIViewController, tapDelegate {
 	// MARK:- Container Delegate Method
 	func setDelegate(tag: Int) {
 		print(tag)
-		let alertController = UIAlertController(title: "Hello", message: "You lastly touched on \(tag)", preferredStyle: .Alert)
-		
-		let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-		alertController.addAction(defaultAction)
-		
-		presentViewController(alertController, animated: true, completion: nil)
+//		self.performSegueWithIdentifier("pushVCSegue", sender: nil)
+		if let tapped = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MapViewController") as? MapViewController {
+				self.navigationController?.pushViewController(tapped, animated: true)
+		}
 	}
+	
 }
 // MARK:- UIColor extension
 extension UIColor {

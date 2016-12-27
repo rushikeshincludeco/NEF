@@ -18,6 +18,7 @@ class VC: UIView {
 		
 		let topBar = UIView()
 		topBar.backgroundColor = UIColor(hex: 0xEDAD41)
+		topBar.userInteractionEnabled = false
 		self.addSubview(topBar)
 		topBar.snp_makeConstraints{ (make) -> Void in
 			make.left.right.equalTo(self)
@@ -25,16 +26,20 @@ class VC: UIView {
 			make.top.equalTo(self)
 		}
 //		imgView.contentMode = .ScaleToFill
+		imgView.userInteractionEnabled = false
 		self.addSubview(imgView)
 		imgView.snp_makeConstraints{ (make) -> Void in
 			make.left.right.equalTo(self)
 			make.top.equalTo(topBar.snp_bottom)
 			make.height.equalTo(self).multipliedBy(0.90)
 		}
+		
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
+	
+	
 
 }
