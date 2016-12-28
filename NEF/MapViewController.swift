@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, NSXMLParserDelegate, MKMapViewDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, XMLParserDelegate, MKMapViewDelegate {
 
 	@IBOutlet weak var mapView: MKMapView!
 	var locationManager = CLLocationManager()
@@ -21,8 +21,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSXMLParse
 		super.viewDidLoad()
 		
 		zoomToRegion()
-		mapView.snp_makeConstraints { (make) -> Void in
-			make.left.right.top.bottom.equalTo(view)
+		mapView.snp.makeConstraints { (make) -> Void in
+			make.top.equalTo(50)
+			make.left.right.bottom.equalTo(view)
 		}
 		self.locationManager.requestAlwaysAuthorization()
 		self.locationManager.requestWhenInUseAuthorization()
@@ -41,17 +42,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSXMLParse
 				points.append(annotation.coordinate)
 		}
 		let polyline = MKPolyline(coordinates: &points, count: points.count)
-		mapView.addOverlay(polyline, level: MKOverlayLevel.AboveRoads)
+		mapView.add(polyline, level: MKOverlayLevel.aboveRoads)
 	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 	
-	func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
 		if overlay is MKPolyline {
 			let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-			polylineRenderer.strokeColor = UIColor.blueColor()
+			polylineRenderer.strokeColor = UIColor.blue
 			polylineRenderer.lineWidth = 5
 			return polylineRenderer
 		}
@@ -63,9 +64,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSXMLParse
 		let fileName = "path"
 		
 		let filePath = getFilePath(fileName)
-		let data = NSData(contentsOfFile: filePath!)
+		let data = try? Data(contentsOf: URL(fileURLWithPath: filePath!))
 		
-		let parser = NSXMLParser(data: data!)
+		let parser = XMLParser(data: data!)
 		parser.delegate = self
 		
 		let success = parser.parse()
@@ -91,7 +92,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSXMLParse
 		mapView.setRegion(region, animated: true)
 	}
 	
-	func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+	func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
 		if elementName == "trkpt" || elementName == "wpt" {
 			let lat = attributeDict["lat"]!
 			let lon = attributeDict["lon"]!
@@ -99,8 +100,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSXMLParse
 		}
 	}
 
-	func getFilePath(fileName: String) -> String? {
-		return NSBundle.mainBundle().pathForResource(fileName, ofType: "gpx")
+	func getFilePath(_ fileName: String) -> String? {
+		return Bundle.main.path(forResource: fileName, ofType: "gpx")
 	}
 
     /*

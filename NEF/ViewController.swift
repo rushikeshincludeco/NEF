@@ -15,17 +15,17 @@ class ViewController: UIViewController, tapDelegate {
 	
 	//MARK:- Structs
 	struct ScreenSize {
-		static let SCREEN_WIDTH = UIScreen.mainScreen().bounds.size.width
-		static let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.size.height
+		static let SCREEN_WIDTH = UIScreen.main.bounds.size.width
+		static let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 		static let SCREEN_MAX_LENGTH = max(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
 		static let SCREEN_MIN_LENGTH = min(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
 	}
 	
 	struct DeviceType {
-		static let IS_IPHONE_4_OR_LESS =  UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH < 568.0
-		static let IS_IPHONE_5 = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 568.0
-		static let IS_IPHONE_6 = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 667.0
-		static let IS_IPHONE_6P = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
+		static let IS_IPHONE_4_OR_LESS =  UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.SCREEN_MAX_LENGTH < 568.0
+		static let IS_IPHONE_5 = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.SCREEN_MAX_LENGTH == 568.0
+		static let IS_IPHONE_6 = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.SCREEN_MAX_LENGTH == 667.0
+		static let IS_IPHONE_6P = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
 	}
 
 	// MARK:- View
@@ -34,23 +34,23 @@ class ViewController: UIViewController, tapDelegate {
 		// Do any additional setup after loading the view, typically from a nib.
 		
 		self.navigationController?.navigationBar.topItem?.title = "NEF"
-		self.navigationController?.navigationBar.translucent = true
+		self.navigationController?.navigationBar.isTranslucent = true
 		self.navigationController?.navigationBar.clipsToBounds = true
 		
 		let container = Container()
 		container.delegate = self
 		self.view.addSubview(container)
-		container.snp_makeConstraints { (make) in
+		container.snp.makeConstraints { (make) in
 			make.top.left.right.bottom.equalTo(view)
 		}
 		
 		let topContainerView = UIImageView()
 		topContainerView.image = UIImage(named: "3.png")
-		topContainerView.contentMode = .ScaleAspectFill
+		topContainerView.contentMode = .scaleAspectFill
 		topContainerView.tag = 1
 //		topContainerView.userInteractionEnabled = true
 		container.addSubview(topContainerView)
-		topContainerView.snp_makeConstraints { (make) -> Void in
+		topContainerView.snp.makeConstraints { (make) -> Void in
 			make.width.equalTo(view)
 			make.height.equalTo(view).multipliedBy(0.40)
 			make.top.equalTo(view).offset(20)
@@ -61,11 +61,11 @@ class ViewController: UIViewController, tapDelegate {
 		topLeftView.tag = 2
 //		topLeftView.userInteractionEnabled = true
 		container.addSubview(topLeftView)
-		topLeftView.snp_makeConstraints { (make) -> Void in
+		topLeftView.snp.makeConstraints { (make) -> Void in
 			make.left.equalTo(view)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
+			make.width.equalTo(view.snp.width).multipliedBy(0.50)
 			make.height.equalTo(DeviceType.IS_IPHONE_4_OR_LESS || DeviceType.IS_IPHONE_5 ? 130: 150)
-			make.top.equalTo(topContainerView.snp_bottom).offset(1)
+			make.top.equalTo(topContainerView.snp.bottom).offset(1)
 		}
 		
 		let topRightView = VC()
@@ -74,11 +74,11 @@ class ViewController: UIViewController, tapDelegate {
 //		topRightView.userInteractionEnabled = true
 		container.addSubview(topRightView)
 
-		topRightView.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(topLeftView.snp_right).offset(1)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
+		topRightView.snp.makeConstraints { (make) -> Void in
+			make.left.equalTo(topLeftView.snp.right).offset(1)
+			make.width.equalTo(view.snp.width).multipliedBy(0.50)
 			make.height.equalTo(DeviceType.IS_IPHONE_4_OR_LESS || DeviceType.IS_IPHONE_5 ? 130: 150)
-			make.top.equalTo(topContainerView.snp_bottom).offset(1)
+			make.top.equalTo(topContainerView.snp.bottom).offset(1)
 		}
 		
 		let middleLeftView = VC()
@@ -87,11 +87,11 @@ class ViewController: UIViewController, tapDelegate {
 //		middleLeftView.userInteractionEnabled = true
 		container.addSubview(middleLeftView)
 
-		middleLeftView.snp_makeConstraints { (make) -> Void in
+		middleLeftView.snp.makeConstraints { (make) -> Void in
 			make.left.equalTo(view)
-			make.height.equalTo(topLeftView.snp_height)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.top.equalTo(topLeftView.snp_bottom).offset(1)
+			make.height.equalTo(topLeftView.snp.height)
+			make.width.equalTo(view.snp.width).multipliedBy(0.50)
+			make.top.equalTo(topLeftView.snp.bottom).offset(1)
 		}
 		
 		let middleRightView = VC()
@@ -100,11 +100,11 @@ class ViewController: UIViewController, tapDelegate {
 //		middleRightView.userInteractionEnabled = true
 		container.addSubview(middleRightView)
 
-		middleRightView.snp_makeConstraints { (make) -> Void in
-			make.left.equalTo(middleLeftView.snp_right).offset(1)
-			make.height.equalTo(topLeftView.snp_height)
-			make.width.equalTo(view.snp_width).multipliedBy(0.50)
-			make.top.equalTo(topRightView.snp_bottom).offset(1)
+		middleRightView.snp.makeConstraints { (make) -> Void in
+			make.left.equalTo(middleLeftView.snp.right).offset(1)
+			make.height.equalTo(topLeftView.snp.height)
+			make.width.equalTo(view.snp.width).multipliedBy(0.50)
+			make.top.equalTo(topRightView.snp.bottom).offset(1)
 		}
 
 	}
@@ -115,10 +115,10 @@ class ViewController: UIViewController, tapDelegate {
 	}
 
 	// MARK:- Container Delegate Method
-	func setDelegate(tag: Int) {
+	func setDelegate(_ tag: Int) {
 		print(tag)
 //		self.performSegueWithIdentifier("pushVCSegue", sender: nil)
-		if let tapped = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MapViewController") as? MapViewController {
+		if let tapped = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController {
 				self.navigationController?.pushViewController(tapped, animated: true)
 		}
 	}
