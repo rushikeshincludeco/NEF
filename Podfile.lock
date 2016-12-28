@@ -1,12 +1,15 @@
 PODS:
+  - GlyuckDataGrid (0.3.0)
   - SnapKit (3.0.2)
 
 DEPENDENCIES:
+  - GlyuckDataGrid (~> 0.3)
   - SnapKit (>= 3.0.0)
 
 SPEC CHECKSUMS:
+  GlyuckDataGrid: 3c0a025f62438e1a56aa84326c26906ebabda710
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: 43a58de0764d4bb2b61649013f2bbfdc5906b507
+PODFILE CHECKSUM: b972a209062586b6d8b56b383042cabfff0065bb
 
 COCOAPODS: 1.1.0.rc.2

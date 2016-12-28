@@ -106,7 +106,6 @@ class ViewController: UIViewController, tapDelegate {
 			make.width.equalTo(view.snp.width).multipliedBy(0.50)
 			make.top.equalTo(topRightView.snp.bottom).offset(1)
 		}
-
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -118,8 +117,14 @@ class ViewController: UIViewController, tapDelegate {
 	func setDelegate(_ tag: Int) {
 		print(tag)
 //		self.performSegueWithIdentifier("pushVCSegue", sender: nil)
-		if let tapped = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController {
+		if tag % 2 == 0 {
+			if let tapped = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController {
 				self.navigationController?.pushViewController(tapped, animated: true)
+			}
+		} else {
+			if let tapped = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "rankingTableViewController") as? rankingTableViewController {
+				self.navigationController?.pushViewController(tapped, animated: true)
+			}
 		}
 	}
 	
