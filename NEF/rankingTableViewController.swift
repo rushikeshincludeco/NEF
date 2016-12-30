@@ -7,21 +7,30 @@
 //
 
 import UIKit
-import GlyuckDataGrid
 
-class rankingTableViewController: UIViewController, DataGridViewDataSource, DataGridViewDelegate{
+class rankingTableViewController: UIViewController{
 
-	var tableView = DataGridView()
-	
+	var labelsMatrixView   : rankingMatrixView!;
+
     override func viewDidLoad() {
         super.viewDidLoad()
-		
-		tableView.delegate      =   self
-		tableView.dataSource    =   self
-		self.view.addSubview(self.tableView)
-		tableView.snp.makeConstraints { (make) -> Void in
-			make.left.right.top.bottom.equalTo(view)
+		self.labelsMatrixView = rankingMatrixView(frame: CGRect.init(x: 5, y: 60, width: 310, height: 100), columns: [60, 125, 125])
+		self.view.addSubview(self.labelsMatrixView)
+		labelsMatrixView.snp.makeConstraints { (make) -> Void in
+			make.top.equalTo(70)
+			make.left.equalTo(view).offset(30)
+			make.right.bottom.equalTo(view)
 		}
+		
+		labelsMatrixView.addRecord(record: ["S.no.", "Item", "Value"])
+		labelsMatrixView.addRecord(record: ["1", "Item1", "Value1"])
+		labelsMatrixView.addRecord(record: ["2", "Item2", "Value2"])
+		labelsMatrixView.addRecord(record: ["Some Date", "06/24/2013", "06/30/2013"])
+		labelsMatrixView.addRecord(record: ["Field1", "hello", "This is a really really long string and should wrap to multiple lines."])
+		labelsMatrixView.addRecord(record: ["Long Fields", "The quick brown fox jumps over the little lazy dog.", "some new value"])
+		
+
+		
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,72 +38,5 @@ class rankingTableViewController: UIViewController, DataGridViewDataSource, Data
         // Dispose of any resources that can be recreated.
     }
 
-	func numberOfColumnsInDataGridView(_ dataGridView: DataGridView) -> Int {
-		return 5
-	}
 	
-	// And number of rows
-	func numberOfRowsInDataGridView(_ dataGridView: DataGridView) -> Int {
-		return 10
-	}
-
-	// Then you'll need to provide titles for columns headers
-	func dataGridView(_ dataGridView: DataGridView, titleForHeaderForRow row: Int) -> String {
-		return String(row + 1)
-	}
-	
-	// And rows headers
-	func dataGridView(_ dataGridView: DataGridView, titleForHeaderForColumn column: Int) -> String {
-
-		switch column {
-		case 0:
-			return "No"
-		case 1:
-			return "Name"
-		case 2:
-			return "Rank"
-		case 3:
-			return "Team"
-		case 4:
-			return "Time"
-		default:
-			return "Sample"
-		}
-	}
-	
-	// And for text for content cells
-	func dataGridView(_ dataGridView: DataGridView, textForCellAtIndexPath indexPath: IndexPath) -> String {
-
-		switch indexPath.row {
-		case 0:
-			return String(indexPath.dataGridRow)
-		case 1:
-			return "Hello " + String(indexPath.dataGridRow)
-		case 2:
-			return String(indexPath.dataGridRow)
-		case 3:
-			return "Team A"
-		case 4:
-			return String(describing: NSDate())
-		default:
-			return "Sample"
-		}
-	}
-	func dataGridView(_ dataGridView: DataGridView, widthForColumn column: Int) -> CGFloat {
-		let width = UIScreen.main.bounds.size.width
-		switch column {
-		case 0:
-			return width * 0.10
-		case 1:
-			return width * 0.40
-		case 2:
-			return width * 0.10
-		case 3:
-			return width * 0.20
-		case 4:
-			return width * 0.30
-		default:
-			return 0
-		}
-	}
 }

@@ -27,8 +27,9 @@
 		62149CDE1DFF03FE0035A45E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62149CDC1DFF03FE0035A45E /* Main.storyboard */; };
 		62149CE01DFF03FE0035A45E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62149CDF1DFF03FE0035A45E /* Assets.xcassets */; };
 		62149CE31DFF03FE0035A45E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62149CE11DFF03FE0035A45E /* LaunchScreen.storyboard */; };
+		621B0EA21E13FB42007B0A0A /* NEFDataGridViewBaseHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621B0EA11E13FB42007B0A0A /* NEFDataGridViewBaseHeaderCell.swift */; };
 		624D0DF11E11404A00136D35 /* path.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 624D0DF01E11404A00136D35 /* path.gpx */; };
-		626A22F41E13CC4D00D3BD0E /* rankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626A22F31E13CC4D00D3BD0E /* rankingTableViewCell.swift */; };
+		626A22F41E13CC4D00D3BD0E /* rankingMatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626A22F31E13CC4D00D3BD0E /* rankingMatrixView.swift */; };
 		626A22F61E13D30500D3BD0E /* rankingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626A22F51E13D30500D3BD0E /* rankingTableViewController.swift */; };
 		6292905F1E0D351100E137D1 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6292905E1E0D351100E137D1 /* logo.png */; };
 /* End PBXBuildFile section */
@@ -55,8 +56,9 @@
 		62149CDF1DFF03FE0035A45E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62149CE21DFF03FE0035A45E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62149CE41DFF03FE0035A45E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		621B0EA11E13FB42007B0A0A /* NEFDataGridViewBaseHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NEFDataGridViewBaseHeaderCell.swift; sourceTree = "<group>"; };
 		624D0DF01E11404A00136D35 /* path.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = path.gpx; sourceTree = "<group>"; };
-		626A22F31E13CC4D00D3BD0E /* rankingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rankingTableViewCell.swift; sourceTree = "<group>"; };
+		626A22F31E13CC4D00D3BD0E /* rankingMatrixView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rankingMatrixView.swift; sourceTree = "<group>"; };
 		626A22F51E13D30500D3BD0E /* rankingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rankingTableViewController.swift; sourceTree = "<group>"; };
 		6292905E1E0D351100E137D1 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		6AC02E13B815BE52505FDEE6 /* Pods_NEF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NEF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,7 +132,7 @@
 				62149CD81DFF03FE0035A45E /* AppDelegate.swift */,
 				620486721E02878200113552 /* Container.swift */,
 				62149CDA1DFF03FE0035A45E /* ViewController.swift */,
-				626A22F31E13CC4D00D3BD0E /* rankingTableViewCell.swift */,
+				626A22F31E13CC4D00D3BD0E /* rankingMatrixView.swift */,
 				626A22F51E13D30500D3BD0E /* rankingTableViewController.swift */,
 				621291A81E12772D009D0D73 /* MapViewController.swift */,
 				620CA17F1E03B7C600377B06 /* VC.swift */,
@@ -138,6 +140,7 @@
 				62149CDF1DFF03FE0035A45E /* Assets.xcassets */,
 				62149CE11DFF03FE0035A45E /* LaunchScreen.storyboard */,
 				62149CE41DFF03FE0035A45E /* Info.plist */,
+				621B0EA11E13FB42007B0A0A /* NEFDataGridViewBaseHeaderCell.swift */,
 			);
 			path = NEF;
 			sourceTree = "<group>";
@@ -292,7 +295,8 @@
 				626A22F61E13D30500D3BD0E /* rankingTableViewController.swift in Sources */,
 				620486731E02878200113552 /* Container.swift in Sources */,
 				621291A91E12772D009D0D73 /* MapViewController.swift in Sources */,
-				626A22F41E13CC4D00D3BD0E /* rankingTableViewCell.swift in Sources */,
+				626A22F41E13CC4D00D3BD0E /* rankingMatrixView.swift in Sources */,
+				621B0EA21E13FB42007B0A0A /* NEFDataGridViewBaseHeaderCell.swift in Sources */,
 				62149CD91DFF03FE0035A45E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
